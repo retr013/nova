@@ -8,7 +8,8 @@ export type TokenMessage = {
   [k: string]: any;
 };
 
-export function useWebSocketFeed(url = "ws://127.0.0.1:8080/connect") {
+// export function useWebSocketFeed(url = "ws://127.0.0.1:8080/connect") {
+export function useWebSocketFeed(url = "https://nova-7asf.onrender.com/connect") {
   const [feed, setFeed] = useState<TokenMessage[]>([]);
   const websocketRef = useRef<WebSocket | null>(null);
   const attemptsRef = useRef(0);
