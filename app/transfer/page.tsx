@@ -94,16 +94,19 @@ export default function TransferPage() {
       // Clear form
       setAmount("");
       setRecipient("");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Transfer failed:", error);
       
       // Handle user rejection specifically
-      if (error.message?.includes("User rejected") || 
-          error.message?.includes("rejected") ||
-          error.name === "UserRejectedRequestError") {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      const errorName = error instanceof Error ? error.name : '';
+      
+      if (errorMessage.includes("User rejected") || 
+          errorMessage.includes("rejected") ||
+          errorName === "UserRejectedRequestError") {
         toast.error("Transaction was rejected by user");
       } else {
-        toast.error(`Transfer failed: ${error.message}`);
+        toast.error(`Transfer failed: ${errorMessage}`);
       }
     } finally {
       setIsLoading(false);

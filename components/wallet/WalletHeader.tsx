@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function WalletHeader() {
-  const { connect, disconnect, connected, publicKey, wallet } = useWallet();
+  const { disconnect, connected, publicKey } = useWallet();
   const { setVisible } = useWalletModal();
 
   const handleWalletClick = () => {
